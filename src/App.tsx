@@ -76,7 +76,14 @@ export default function App() {
     >
       <div className="h-32 bg-blue-500 w-full flex border">
         <div>
-          <button onMouseEnter={() => set(1, 150)} onClick={() => set(1)}>
+          <button
+            className="p-3"
+            onMouseEnter={() => set(1, 150)}
+            onClick={() => set(1)}
+            onKeyDown={(e) => {
+              e.key === "Escape" && set(undefined);
+            }}
+          >
             <strong>Oferta</strong>
           </button>
           <Transition
@@ -91,7 +98,7 @@ export default function App() {
           >
             <div
               className={clsx(
-                "bg-green-500 absolute w-full left-0 top-0 text-6xl font-bold",
+                "bg-green-500 absolute w-full left-0 top-0 text-6xl font-bold  p-10 p-10",
                 "flex flex-col overflow-auto lg:max-h-[var(--menu-window-height)]",
                 {
                   "translate-y-32 --z-10": value === 1,
@@ -110,13 +117,32 @@ export default function App() {
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Voluptas officiis recusandae, ex ut totam quam, impedit
                 distinctio repellendus provident quisquam voluptatum saepe
-                aspernatur dolorem
+                aspernatur dolorem Lorem ipsum dolor sit, amet consectetur
+                adipisicing elit. Voluptas officiis recusandae, ex ut totam
+                quam, impedit distinctio repellendus provident quisquam
+                voluptatum saepe aspernatur dolorem Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit. Voluptas officiis recusandae, ex
+                ut totam quam, impedit distinctio repellendus provident quisquam
+                voluptatum saepe aspernatur dolorem Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit. Voluptas officiis recusandae, ex
+                ut totam quam, impedit distinctio repellendus provident quisquam
+                voluptatum saepe aspernatur dolorem Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit. Voluptas officiis recusandae, ex
+                ut totam quam, impedit distinctio repellendus provident quisquam
+                voluptatum saepe aspernatur dolorem
               </p>
             </div>
           </Transition>
         </div>
         <div>
-          <button onMouseEnter={() => set(2, 150)} onClick={() => set(2)}>
+          <button
+            className="p-3"
+            onMouseEnter={() => set(2, 150)}
+            onClick={() => set(2)}
+            onKeyDown={(e) => {
+              e.key === "Escape" && set(undefined);
+            }}
+          >
             <strong>Sklep</strong>
           </button>
           <Transition
@@ -131,7 +157,7 @@ export default function App() {
           >
             <div
               className={clsx(
-                "bg-pink-500 absolute w-full left-0 top-0 text-6xl font-bold",
+                "bg-pink-500 absolute w-full left-0 top-0 text-6xl font-bold  p-10",
                 "flex flex-col overflow-auto lg:max-h-[var(--menu-window-height)]",
                 {
                   "translate-y-32 --z-10": value === 2,
@@ -150,7 +176,14 @@ export default function App() {
           </Transition>
         </div>
         <div>
-          <button onMouseEnter={() => set(3, 150)} onClick={() => set(3)}>
+          <button
+            className="p-3"
+            onMouseEnter={() => set(3, 150)}
+            onClick={() => set(3)}
+            onKeyDown={(e) => {
+              e.key === "Escape" && set(undefined);
+            }}
+          >
             <strong>Kontakt</strong>
           </button>
           <Transition
@@ -165,7 +198,7 @@ export default function App() {
           >
             <div
               className={clsx(
-                "bg-green-500 absolute w-full left-0 top-0 text-6xl font-bold",
+                "bg-green-500 absolute w-full left-0 top-0 text-6xl font-bold p-10",
                 "flex orange-col overflow-auto lg:max-h-[var(--menu-window-height)]",
                 {
                   "translate-y-32 --z-10": value === 3,
