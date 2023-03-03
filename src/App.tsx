@@ -76,7 +76,7 @@ export default function App() {
     >
       <div className="h-32 bg-blue-500 w-full flex border">
         <div>
-          <button onMouseEnter={() => set(1, 300)} onClick={() => set(1)}>
+          <button onMouseEnter={() => set(1, 150)} onClick={() => set(1)}>
             <strong>Oferta</strong>
           </button>
           <Transition
@@ -116,7 +116,7 @@ export default function App() {
           </Transition>
         </div>
         <div>
-          <button onMouseEnter={() => set(2, 300)} onClick={() => set(2)}>
+          <button onMouseEnter={() => set(2, 150)} onClick={() => set(2)}>
             <strong>Sklep</strong>
           </button>
           <Transition
@@ -150,7 +150,7 @@ export default function App() {
           </Transition>
         </div>
         <div>
-          <button onMouseEnter={() => set(3, 300)} onClick={() => set(3)}>
+          <button onMouseEnter={() => set(3, 150)} onClick={() => set(3)}>
             <strong>Kontakt</strong>
           </button>
           <Transition
