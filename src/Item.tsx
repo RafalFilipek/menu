@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Transition } from "@headlessui/react";
 import clsx from "clsx";
+import { getTabbableCandidatees } from "./getTabbableCandidatees";
 
 interface IItemProps {
   id: number;
@@ -22,9 +23,9 @@ function ItemComponent(
   const ref = React.useRef<HTMLDivElement>(null);
   const beforeLeave = React.useCallback(() => {
     if (ref.current) {
-      ref.current.querySelectorAll("a").forEach((el) => {
-        el.setAttribute("tabindex", "-1");
-      });
+      for (const node of getTabbableCandidatees(ref.current)) {
+        node.setAttribute("tabindex", "-1");
+      }
     }
   }, []);
 

@@ -10,6 +10,23 @@ export default function App() {
   const { set, value } = useValue(undefined);
   const { height } = useWindowSize();
   const [isExpanded, setIsExpanded] = React.useState(true);
+  const itemRefs = React.useRef<Record<number, HTMLButtonElement | null>>({});
+
+  React.useEffect(() => {
+    function callback(event: KeyboardEvent) {
+      if (event.code === "Escape") {
+        const currentButton = itemRefs.current && itemRefs.current[value];
+        if (currentButton) {
+          currentButton.focus();
+        }
+        set(undefined, 0);
+      }
+    }
+    document.addEventListener("keyup", callback);
+    return () => {
+      document.removeEventListener("keyup", callback);
+    };
+  }, [value, set]);
 
   return (
     <div
@@ -40,7 +57,7 @@ export default function App() {
           set={set}
           title="Oferta"
           ref={(ref) => {
-            console.log(ref);
+            itemRefs.current[1] = ref;
           }}
         >
           <div className="flex gap-5 flex-wrap">
@@ -58,14 +75,30 @@ export default function App() {
             <a href="#">003</a>
           </div>
         </Item>
-        <Item id={2} isActive={value === 2} set={set} title="Sklep">
+        <Item
+          id={2}
+          isActive={value === 2}
+          set={set}
+          title="Sklep"
+          ref={(ref) => {
+            itemRefs.current[2] = ref;
+          }}
+        >
           <div className="flex gap-5">
             <a href="#">004</a>
             <a href="#">005</a>
             <a href="#">006</a>
           </div>
         </Item>
-        <Item id={3} isActive={value === 3} set={set} title="Kontat">
+        <Item
+          id={3}
+          isActive={value === 3}
+          set={set}
+          title="Kontat"
+          ref={(ref) => {
+            itemRefs.current[3] = ref;
+          }}
+        >
           <div className="flex gap-5">
             <a href="#">007</a>
             <a href="#">008</a>
