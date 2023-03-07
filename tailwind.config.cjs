@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      transitionProperty: {
+        height: "max-height",
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: 0, visibility: "visible" },

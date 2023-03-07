@@ -34,7 +34,7 @@ function ItemComponent(
     <div>
       <button
         ref={forwardRef}
-        className="p-3 text-xl"
+        className="p-3 text-xl text-left block w-full sm:inline-block"
         onMouseEnter={() => set(id, 150)}
         onClick={() => set(id)}
         onKeyDown={(e) => {
@@ -46,22 +46,22 @@ function ItemComponent(
       <Transition
         show={isActive}
         as={React.Fragment}
-        enter="transition duration-300"
-        leave="transition duration-500"
+        enter="transition-all duration-300 max-h-0 overflow-hidden"
+        leave="transition-all duration-300 max-h-[500px]"
         beforeLeave={beforeLeave}
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
+        enterFrom="sm:opacity-0 max-h-0"
+        enterTo="sm:opacity-100 max-h-[500px]"
+        leaveFrom="sm:opacity-100 max-h-[500px]"
+        leaveTo="sm:opacity-0 max-h-0"
       >
         <div
           ref={ref}
           className={clsx(
-            "bg-green-500 absolute w-full left-0 top-0 text-6xl font-bold  p-10 p-10",
+            "bg-green-500 sm:absolute w-full left-0 top-0 text-6xl font-bold",
             "flex flex-col overflow-auto lg:max-h-[var(--menu-window-height)]",
             {
-              "translate-y-24 --z-10": isActive,
-              "translate-y-24 -z-20": !isActive,
+              "sm:translate-y-24 --z-10": isActive,
+              "sm:translate-y-24 -z-20": !isActive,
             }
           )}
         >

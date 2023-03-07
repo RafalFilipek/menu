@@ -1,11 +1,16 @@
 import "./styles.css";
+import * as React from "react";
 import { useWindowSize } from "./useWindowSize";
 import { useValue } from "./useValue";
 import { Item } from "./Item";
+import { Menu } from "lucide-react";
+import { clsx } from "clsx";
 
 export default function App() {
   const { set, value } = useValue(undefined);
   const { height } = useWindowSize();
+  const [isExpanded, setIsExpanded] = React.useState(true);
+
   return (
     <div
       className="mx-auto container mb-20 relative text-white"
@@ -16,7 +21,19 @@ export default function App() {
         "--menu-window-height": `calc(${height}px - 8rem)`,
       }}
     >
-      <div className="py-5 h-24 bg-blue-500 w-full flex">
+      <div className="bg-blue-500 flex justify-end p-2 sm:hidden">
+        <button onClick={() => setIsExpanded((v) => !v)}>
+          <Menu />
+        </button>
+      </div>
+      <div
+        className={clsx(
+          {
+            hidden: !isExpanded,
+          },
+          "py-5 sm:h-24 bg-blue-500 w-full sm:flex"
+        )}
+      >
         <Item
           id={1}
           isActive={value === 1}
@@ -26,7 +43,16 @@ export default function App() {
             console.log(ref);
           }}
         >
-          <div className="flex gap-5">
+          <div className="flex gap-5 flex-wrap">
+            <a href="#">001</a>
+            <a href="#">002</a>
+            <a href="#">003</a>
+            <a href="#">001</a>
+            <a href="#">002</a>
+            <a href="#">003</a>
+            <a href="#">001</a>
+            <a href="#">002</a>
+            <a href="#">003</a>
             <a href="#">001</a>
             <a href="#">002</a>
             <a href="#">003</a>
