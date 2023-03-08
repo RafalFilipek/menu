@@ -71,12 +71,12 @@ function ItemComponent(
       <Transition
         show={isActive}
         as={React.Fragment}
-        enter="transition-all duration-300 max-h-0 overflow-hidden"
-        leave="transition-all duration-300 max-h-[500px]"
-        enterFrom="sm:opacity-0 max-h-0"
-        enterTo="sm:opacity-100 max-h-[500px]"
-        leaveFrom="sm:opacity-100 max-h-[500px]"
-        leaveTo="sm:opacity-0 max-h-0"
+        enter="sm:transition-all sm:duration-300 overflow-hidden"
+        leave="sm:transition-all sm:duration-300"
+        enterFrom="sm:opacity-0"
+        enterTo="sm:opacity-100"
+        leaveFrom="sm:opacity-100"
+        leaveTo="sm:opacity-0"
         beforeLeave={makeNodesNotTabbable}
       >
         <div
