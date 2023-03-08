@@ -1,5 +1,5 @@
 export function getTabbableCandidates(container: HTMLElement) {
-  const nodes: HTMLElement[] = [];
+  const tabbableNodes: HTMLElement[] = [];
   const walker = document.createTreeWalker(container, NodeFilter.SHOW_ELEMENT, {
     acceptNode(node: HTMLElement) {
       return node.tabIndex >= 0
@@ -9,7 +9,7 @@ export function getTabbableCandidates(container: HTMLElement) {
   });
   while (walker.nextNode()) {
     // @ts-expect-error node parameter is to generic
-    nodes.push(walker.currentNode);
+    tabbableNodes.push(walker.currentNode);
   }
-  return nodes;
+  return tabbableNodes;
 }

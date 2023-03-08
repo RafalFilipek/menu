@@ -2,10 +2,13 @@ import * as React from "react";
 import { Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { getTabbableCandidates } from "./getTabbableCandidates";
+import { UseDelayValueSetFunction } from "./useDelayValue";
+import { SHOW_ANIMATION_DELAY } from "./consts";
 
 interface IItemProps {
-  id: number;
-  set: (id?: number, delay?: number) => void;
+  id: string;
+  setActive: UseDelayValueSetFunction;
+  abortActivation: () => void;
   isActive: boolean;
   title: string;
 }
@@ -17,10 +20,22 @@ export const Item = React.memo(
 );
 
 function ItemComponent(
-  { id, set, isActive, title, children }: React.PropsWithChildren<IItemProps>,
+  {
+    id,
+    setActive,
+    abortActivation,
+    isActive,
+    title,
+    children,
+  }: React.PropsWithChildren<IItemProps>,
   forwardRef: React.ForwardedRef<HTMLButtonElement>
 ) {
+  // We store reference to the div that contains the menu items
+  // We need this to manage tabbable nodes inside the submenu
   const ref = React.useRef<HTMLDivElement>(null);
+
+  // This function makes all tabbable nodes inside the submenu unfocusable
+  // We call it before the submenu is hidden
   const makeNodesNotTabbable = React.useCallback(() => {
     if (ref.current) {
       for (const node of getTabbableCandidates(ref.current)) {
@@ -29,18 +44,30 @@ function ItemComponent(
     }
   }, []);
 
-  React.useEffect(() => {});
-
   return (
     <div>
       <button
         ref={forwardRef}
         className="p-3 text-xl text-left block w-full sm:inline-block"
-        onMouseEnter={() => set(id, 150)}
-        onClick={() => set(id)}
+        // onMouseEnter we want to show the submenu after a delay
+        onMouseEnter={() => setActive(id, SHOW_ANIMATION_DELAY)}
+        // onMouseLeave we want to abort current activation
+        // This allows user to move between menu items without submenu being shown
+        onMouseLeave={() => {
+          abortActivation();
+        }}
+        // onClick we open the submenu immediately
+        onClick={() => setActive(id)}
       >
         <strong>{title}</strong>
       </button>
+      {/**
+       * We use Transition component to show/hide the submenu
+       * Inside `enter`, `leave` etc. props we can specify CSS classes
+       * that will be applied to the submenu when it is shown/hidden
+       *
+       * Cool part is that we can apply different classes for different screen sizes
+       */}
       <Transition
         show={isActive}
         as={React.Fragment}
@@ -57,6 +84,7 @@ function ItemComponent(
           className={clsx(
             "bg-green-500 sm:absolute w-full left-0 top-0 text-6xl font-bold p-10 ",
             "flex flex-col overflow-auto lg:max-h-[var(--menu-window-height)]",
+            // @this can probably be simplified by moving the logic to the parent component
             {
               "sm:translate-y-24 z-10": isActive,
               "sm:translate-y-24 z-20": !isActive,
