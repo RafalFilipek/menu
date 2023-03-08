@@ -94,7 +94,7 @@ export default function App() {
           id={3}
           isActive={value === 3}
           set={set}
-          title="Kontat"
+          title="Kontakt"
           ref={(ref) => {
             itemRefs.current[3] = ref;
           }}
@@ -105,6 +105,23 @@ export default function App() {
             <a href="#">009</a>
           </div>
         </Item>
+      </div>
+      <div className="text-black">
+        <ul>
+          <li>
+            ✔ obsługa <code>hover</code> i <code>click</code>
+          </li>
+          <li>✔ rozwijanie i zwijanie desktop z animacją</li>
+          <li>✔ rozwijanie i zwijanie mobile z animacją</li>
+          <li>✔ scroll gdy submenu jest większe niż ekran*</li>
+          <li>
+            ✔ obsługa <code>Tab</code>
+          </li>
+          <li>
+            ✔ obsługa <code>Escape</code>
+          </li>
+          <li></li>
+        </ul>
       </div>
     </div>
   );
