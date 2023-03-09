@@ -23,7 +23,7 @@ export function Navigation({ menu, theme }: INavigationProps) {
    * On mobile, we want to manually control the expanded state of the submenu.
    * This state is ignored on desktop as we set css classes only for mobile.
    */
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
   /**
    * In order to manage focus, we need to store a ref to each menu item.
