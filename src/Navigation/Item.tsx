@@ -76,8 +76,8 @@ function ItemComponent(
         <div
           ref={ref}
           className={clsx(
-            "sm:absolute w-full left-0 top-0 sm:top-full bg-white text-black",
-            "flex flex-wrap flex-col sm:flex-row overflow-auto lg:max-h-[var(--menu-window-height)]"
+            "bg-white text-black w-full flex flex-wrap flex-col overflow-auto",
+            "sm:absolute sm:left-0 sm:top-full sm:flex-row sm:max-h-[var(--menu-window-height)]"
           )}
         >
           {sections.map((section, index) => {
