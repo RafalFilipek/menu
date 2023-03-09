@@ -77,6 +77,9 @@ export function Navigation({ menu, theme }: INavigationProps) {
         "--menu-window-height": `calc(${height}px - 8rem)`,
       }}
     >
+      {/**
+       * This element is only visible on mobile. It contains a button that opens the submenu.
+       */}
       <div
         className="
           flex justify-end p-2 sm:hidden
@@ -88,6 +91,7 @@ export function Navigation({ menu, theme }: INavigationProps) {
           <MenuIcon />
         </button>
       </div>
+
       <div
         className={clsx(
           {

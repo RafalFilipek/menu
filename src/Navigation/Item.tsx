@@ -76,13 +76,8 @@ function ItemComponent(
         <div
           ref={ref}
           className={clsx(
-            "sm:absolute border w-full left-0 top-0  bg-white text-black",
-            "flex  gap-5 flex-col sm:flex-row overflow-auto lg:max-h-[var(--menu-window-height)]",
-            // @this can probably be simplified by moving the logic to the parent component
-            {
-              "sm:translate-y-24 z-10": isActive,
-              "sm:translate-y-24 z-20": !isActive,
-            }
+            "sm:absolute border w-full left-0 top-0 sm:top-full  bg-white text-black",
+            "flex  gap-5 flex-col sm:flex-row overflow-auto lg:max-h-[var(--menu-window-height)]"
           )}
         >
           {sections.map((section, index) => {
