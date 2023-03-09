@@ -45,7 +45,7 @@ function ItemComponent(
     >
       <button
         ref={forwardRef}
-        className="p-3 text-left block w-full sm:inline-block"
+        className="p-3 text-left block w-full sm:inline-block group-[.navigation-white]:text-black"
         // onMouseEnter we want to show the submenu after a delay
         onMouseEnter={() => setActive(id, SHOW_ANIMATION_DELAY)}
         // onMouseLeave we want to abort current activation
@@ -69,7 +69,7 @@ function ItemComponent(
         show={isActive}
         as={React.Fragment}
         enter="sm:transition-all sm:duration-300 overflow-hidden"
-        leave="sm:transition-all sm:duration-300"
+        leave="sm:transition-all sm:duration-500"
         enterFrom="sm:opacity-0"
         enterTo="sm:opacity-100"
         leaveFrom="sm:opacity-100"

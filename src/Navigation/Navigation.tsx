@@ -17,7 +17,7 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
     set,
     value: activeSubmenuId,
     cancel,
-  } = useDelayValue<string | undefined>(undefined);
+  } = useDelayValue<string | undefined>("SklepNode");
   /**
    * We need window height to calculate the max height of the submenu.
    * This value will be passed to the submenu as a CSS variable.
@@ -90,7 +90,7 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
        */}
       <div
         className="
-          flex justify-end p-2 sm:hidden bg-blue-500
+          flex justify-end p-2 sm:hidden 
 
         "
       >
@@ -103,7 +103,7 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
           {
             hidden: !isExpanded,
           },
-          "py-5 sm:h-24 w-full sm:flex bg-green-500"
+          "py-5 sm:h-24 w-full sm:flex "
         )}
       >
         {menu.map((item) => {
@@ -133,7 +133,7 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
           );
         })}
       </div>
-      <div className="hidden sm:flex justify-end p-2 bg-blue-500">
+      <div className="hidden sm:flex justify-end p-2 ">
         {sideMenu.map((item, index) => {
           if (item.type === "LINK") {
             return (
