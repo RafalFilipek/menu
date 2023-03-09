@@ -2,12 +2,17 @@ import * as React from "react";
 import { useWindowSize } from "./useWindowSize";
 import { useDelayValue } from "./useDelayValue";
 import { Item } from "./Item";
-import { MenuIcon } from "lucide-react";
+import {
+  MenuIcon,
+  ShoppingCartIcon,
+  SearchIcon,
+  GlobeIcon,
+} from "lucide-react";
 import { clsx } from "clsx";
 import { HIDE_ANIMATION_DELAY_ON_MOUSE_OUTSIDE } from "./consts";
 import { INavigationProps } from "./types";
 
-export function Navigation({ menu, theme }: INavigationProps) {
+export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
   const {
     set,
     value: activeSubmenuId,
@@ -61,10 +66,13 @@ export function Navigation({ menu, theme }: INavigationProps) {
 
   return (
     <div
-      className={clsx("mx-auto container relative text-white group", {
-        "navigation-black": theme === "BLACK",
-        "navigation-white": theme === "WHITE",
-      })}
+      className={clsx(
+        "mx-auto container relative text-white group flex flex-col sm:flex-row",
+        {
+          "navigation-black bg-black text-white": theme === "BLACK",
+          "navigation-white bg-white text-black": theme === "WHITE",
+        }
+      )}
       // We want to close the submenu when the user moves outside of navigation.
       // We use a delay to prevent the submenu from closing when the user moves back
       onMouseLeave={() => set(undefined, HIDE_ANIMATION_DELAY_ON_MOUSE_OUTSIDE)}
@@ -82,24 +90,20 @@ export function Navigation({ menu, theme }: INavigationProps) {
        */}
       <div
         className="
-          flex justify-end p-2 sm:hidden
-          group-[.navigation-black]:bg-black group-[.navigation-black]:text-white
-          group-[.navigation-white]:bg-white group-[.navigation-white]:text-black
+          flex justify-end p-2 sm:hidden bg-blue-500
+
         "
       >
         <button onClick={() => setIsExpanded((v) => !v)}>
           <MenuIcon />
         </button>
       </div>
-
       <div
         className={clsx(
           {
             hidden: !isExpanded,
           },
-          "py-5 sm:h-24 w-full sm:flex",
-          "group-[.navigation-black]:bg-black group-[.navigation-black]:text-white",
-          "group-[.navigation-white]:bg-white group-[.navigation-white]:text-black"
+          "py-5 sm:h-24 w-full sm:flex bg-green-500"
         )}
       >
         {menu.map((item) => {
@@ -113,6 +117,7 @@ export function Navigation({ menu, theme }: INavigationProps) {
           return (
             <Item
               key={item.id}
+              type={item.type}
               id={item.id}
               isActive={activeSubmenuId === item.id}
               setActive={set}
@@ -126,6 +131,24 @@ export function Navigation({ menu, theme }: INavigationProps) {
               }}
             />
           );
+        })}
+      </div>
+      <div className="hidden sm:flex justify-end p-2 bg-blue-500">
+        {sideMenu.map((item, index) => {
+          if (item.type === "LINK") {
+            return (
+              <a key={index} href={item.href}>
+                <GlobeIcon />
+              </a>
+            );
+          }
+          if (item.type === "SEARCH") {
+            return <SearchIcon key={index} />;
+          }
+          if (item.type === "CART") {
+            return <ShoppingCartIcon key={index} />;
+          }
+          return null;
         })}
       </div>
     </div>

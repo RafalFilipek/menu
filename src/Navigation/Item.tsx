@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { getTabbableCandidates } from "./getTabbableCandidates";
 import { SHOW_ANIMATION_DELAY } from "./consts";
 import { INavigationItemProps } from "./types";
+import { GlobeIcon } from "lucide-react";
 
 export const Item = React.memo(
   React.forwardRef<
@@ -19,7 +20,7 @@ function ItemComponent(
     abortActivation,
     isActive,
     title,
-    children,
+    type,
     sections,
   }: React.PropsWithChildren<INavigationItemProps>,
   forwardRef: React.ForwardedRef<HTMLButtonElement>
@@ -39,7 +40,9 @@ function ItemComponent(
   }, []);
 
   return (
-    <div>
+    <div
+      className={clsx({ "sm:hidden": type === "MOBILE_EXCLUSIVE_EXPANDER" })}
+    >
       <button
         ref={forwardRef}
         className="p-3 text-left block w-full sm:inline-block"
@@ -108,8 +111,14 @@ function ItemComponent(
                       <ul key={index} className="w-full">
                         {column.map((item, index) => {
                           return (
-                            <li key={index}>
+                            <li key={index} className="flex gap-2">
+                              {item.iconType && <GlobeIcon />}
                               <a href={item.title}>{item.title}</a>
+                              {item.badge && (
+                                <span className="bg-yellow-200 rounded-lg">
+                                  {item.badge.title}
+                                </span>
+                              )}
                             </li>
                           );
                         })}

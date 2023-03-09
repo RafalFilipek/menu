@@ -28,8 +28,12 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
           title: "Abonament komórkowy",
           columns: [
             [
-              { title: "Plany komórkowe", href: "/plany-komorkow" },
-              { title: "Nowy numer", href: "/nowy-numer" },
+              {
+                title: "Plany komórkowe",
+                href: "/plany-komorkow",
+                badge: { title: "hello" },
+              },
+              { title: "Nowy numer", href: "/nowy-numer", iconType: "lol" },
               { title: "Przeduż umowę", href: "/przedluz-umowe" },
               { title: "Przenieś numer", href: "/przenies-numer" },
             ],
@@ -149,20 +153,54 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
       ],
     },
     { type: "LINK", id: "KontaktNode", title: "Kontakt", href: "/kontakt" },
+    {
+      type: "MOBILE_EXCLUSIVE_EXPANDER",
+      id: "OfertaMobileNode",
+      title: "Mobile exclusive",
+      items: [
+        {
+          title: "Abonament komórkowy",
+          columns: [
+            [
+              {
+                title: "Plany komórkowe",
+                href: "/plany-komorkowe ",
+                iconType: "globe",
+              },
+              { title: "Nowy numer", href: "/nowy-numer", iconType: "globe" },
+              {
+                title: "Przeduż umowę",
+                href: "/przedluz-umowe",
+                iconType: "globe",
+              },
+              {
+                title: "Przenieś numer",
+                href: "/przenies-numer",
+                iconType: "globe",
+              },
+            ],
+          ],
+        },
+      ],
+    },
+  ],
+  sideMenu: [
+    { type: "SEARCH", iconType: "search" },
+    { type: "LINK", href: "/link", title: "link", iconType: "globe" },
   ],
 };
 
 export default function App() {
   return (
     <>
-      <div className="mb-20">
+      <div className="mb-20 p-2">
         <Navigation {...navigationProps} theme="BLACK" />
         <img
           className="container mx-auto"
           src="https://www.orange.pl/medias/sys_master/root/images/h8f/hdd/12326283706398/kv-desktop-0603.jpg"
         />
       </div>
-      <div>
+      <div className="p-2">
         <Navigation {...navigationProps} theme="WHITE" />
         <img
           className="container mx-auto"
