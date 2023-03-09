@@ -39,7 +39,7 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
     },
     {
       type: "EXPANDER",
-      id: "KontaktNode",
+      id: "SklepNode",
       title: "Sklep",
       items: [
         {
@@ -67,6 +67,30 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
               { title: "Telewizory i audio ", href: "/telewizory-i-audio" },
               { title: "Pojazdy elektryczne", href: "/pojazdy-elektryczne" },
               { title: "Porównywarka", href: "/porównywarka" },
+            ],
+          ],
+        },
+        {
+          title: "Akcesoria",
+          columns: [
+            [
+              { title: "Słuchawki", href: "/słuchawki" },
+              { title: "Głośniki Bluetooth", href: "/Głośniki Bluetooth" },
+              { title: "Etui na telefon", href: "/Etui na telefon" },
+              { title: "Szkła ochronne", href: "/Szkła ochronne" },
+              { title: "Wszystkie akcesoria", href: "/Wszystkie akcesoria" },
+            ],
+          ],
+        },
+        {
+          title: "Strefa marek",
+          columns: [
+            [
+              { title: "Samsung", href: "/Samsung" },
+              { title: "Apple", href: "/Apple" },
+              { title: "Xiaomi", href: "/Xiaomi" },
+              { title: "Realme", href: "/Realme" },
+              { title: "Oppo", href: "/Oppo" },
             ],
           ],
         },

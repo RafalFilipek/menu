@@ -42,7 +42,7 @@ function ItemComponent(
     <div>
       <button
         ref={forwardRef}
-        className="p-3 text-xl text-left block w-full sm:inline-block"
+        className="p-3 text-left block w-full sm:inline-block"
         // onMouseEnter we want to show the submenu after a delay
         onMouseEnter={() => setActive(id, SHOW_ANIMATION_DELAY)}
         // onMouseLeave we want to abort current activation
@@ -76,8 +76,8 @@ function ItemComponent(
         <div
           ref={ref}
           className={clsx(
-            "bg-green-500 sm:absolute w-full left-0 top-0 text-6xl font-bold p-10 ",
-            "flex flex-col overflow-auto lg:max-h-[var(--menu-window-height)]",
+            "sm:absolute border w-full left-0 top-0  bg-white text-black",
+            "flex  gap-5 flex-col sm:flex-row overflow-auto lg:max-h-[var(--menu-window-height)]",
             // @this can probably be simplified by moving the logic to the parent component
             {
               "sm:translate-y-24 z-10": isActive,
@@ -87,21 +87,31 @@ function ItemComponent(
         >
           {sections.map((section, index) => {
             return (
-              <div key={index}>
-                <h2>{section.title}</h2>
-                {section.columns.map((column, index) => {
-                  return (
-                    <div key={index} className="border">
-                      {column.map((item, index) => {
-                        return (
-                          <a key={index} href={item.title}>
-                            {item.title}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  );
+              <div
+                key={index}
+                className={clsx({
+                  "sm:w-1/4": section.columns.length == 1,
+                  "sm:w-2/4": section.columns.length == 2,
+                  "sm:w-3/4": section.columns.length == 3,
+                  "sm:w-full": section.columns.length == 4,
                 })}
+              >
+                <h2 className="font-bold">{section.title}</h2>
+                <div className="flex flex-col sm:flex-row sm:gap-5">
+                  {section.columns.map((column, index) => {
+                    return (
+                      <ul key={index} className="border w-full">
+                        {column.map((item, index) => {
+                          return (
+                            <li key={index}>
+                              <a href={item.title}>{item.title}</a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    );
+                  })}
+                </div>
               </div>
             );
           })}
