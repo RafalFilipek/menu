@@ -81,17 +81,27 @@ function ItemComponent(
           )}
         >
           {sections.map((section, index) => {
+            const columnsCount = section.columns.length;
             return (
               <div
                 key={index}
                 className={clsx({
-                  "sm:w-1/4": section.columns.length == 1,
-                  "sm:w-2/4": section.columns.length == 2,
-                  "sm:w-3/4": section.columns.length == 3,
-                  "sm:w-full": section.columns.length == 4,
+                  "sm:w-1/4": columnsCount == 1,
+                  "sm:w-2/4": columnsCount == 2,
+                  "sm:w-3/4": columnsCount == 3,
+                  "sm:w-full": columnsCount == 4,
                 })}
               >
-                <h2 className="font-bold pt-6">{section.title}</h2>
+                <h2
+                  className={clsx("font-bold border-b border-gray-400 mt-6", {
+                    "sm:w-full": columnsCount == 1,
+                    "sm:w-1/2": columnsCount == 2,
+                    "sm:w-1/3": columnsCount == 3,
+                    "sm:w-1/4": columnsCount == 4,
+                  })}
+                >
+                  {section.title}
+                </h2>
                 <div className="flex flex-col sm:flex-row sm:gap-5 pb-10">
                   {section.columns.map((column, index) => {
                     return (
