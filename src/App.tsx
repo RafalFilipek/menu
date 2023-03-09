@@ -94,6 +94,58 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
             ],
           ],
         },
+        {
+          title: "Telefony i urządzenia",
+          columns: [
+            [
+              {
+                title: "Smartfony z abonamentem",
+                href: "/smartfony-z-abonamentem",
+              },
+              {
+                title: "Smartfony bez abonamentu",
+                href: "/smartfony-bez-abonamentu",
+              },
+              { title: "Outlet", href: "/outlet" },
+              { title: "Laptopy i konsole ", href: "/laptopy-i-konsole" },
+              { title: "Modemy i routery", href: "/modemy-i-routery" },
+            ],
+            [
+              {
+                title: "Smartwatche i smartbandy ",
+                href: "/smartwatche-i-smartbandy",
+              },
+              { title: "Urządzenia smart", href: "/urządzenia-smart" },
+              { title: "Telewizory i audio ", href: "/telewizory-i-audio" },
+              { title: "Pojazdy elektryczne", href: "/pojazdy-elektryczne" },
+              { title: "Porównywarka", href: "/porównywarka" },
+            ],
+          ],
+        },
+        {
+          title: "Akcesoria",
+          columns: [
+            [
+              { title: "Słuchawki", href: "/słuchawki" },
+              { title: "Głośniki Bluetooth", href: "/Głośniki Bluetooth" },
+              { title: "Etui na telefon", href: "/Etui na telefon" },
+              { title: "Szkła ochronne", href: "/Szkła ochronne" },
+              { title: "Wszystkie akcesoria", href: "/Wszystkie akcesoria" },
+            ],
+          ],
+        },
+        {
+          title: "Strefa marek",
+          columns: [
+            [
+              { title: "Samsung", href: "/Samsung" },
+              { title: "Apple", href: "/Apple" },
+              { title: "Xiaomi", href: "/Xiaomi" },
+              { title: "Realme", href: "/Realme" },
+              { title: "Oppo", href: "/Oppo" },
+            ],
+          ],
+        },
       ],
     },
     { type: "LINK", id: "KontaktNode", title: "Kontakt", href: "/kontakt" },

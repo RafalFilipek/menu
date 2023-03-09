@@ -76,8 +76,8 @@ function ItemComponent(
         <div
           ref={ref}
           className={clsx(
-            "sm:absolute border w-full left-0 top-0 sm:top-full  bg-white text-black",
-            "flex  gap-5 flex-col sm:flex-row overflow-auto lg:max-h-[var(--menu-window-height)]"
+            "sm:absolute w-full left-0 top-0 sm:top-full bg-white text-black",
+            "flex flex-wrap flex-col sm:flex-row overflow-auto lg:max-h-[var(--menu-window-height)]"
           )}
         >
           {sections.map((section, index) => {
@@ -91,11 +91,11 @@ function ItemComponent(
                   "sm:w-full": section.columns.length == 4,
                 })}
               >
-                <h2 className="font-bold">{section.title}</h2>
-                <div className="flex flex-col sm:flex-row sm:gap-5">
+                <h2 className="font-bold pt-6">{section.title}</h2>
+                <div className="flex flex-col sm:flex-row sm:gap-5 pb-10">
                   {section.columns.map((column, index) => {
                     return (
-                      <ul key={index} className="border w-full">
+                      <ul key={index} className="w-full">
                         {column.map((item, index) => {
                           return (
                             <li key={index}>
