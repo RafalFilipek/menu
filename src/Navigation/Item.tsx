@@ -2,21 +2,14 @@ import * as React from "react";
 import { Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { getTabbableCandidates } from "./getTabbableCandidates";
-import { UseDelayValueSetFunction } from "./useDelayValue";
 import { SHOW_ANIMATION_DELAY } from "./consts";
-
-interface IItemProps {
-  id: string;
-  setActive: UseDelayValueSetFunction;
-  abortActivation: () => void;
-  isActive: boolean;
-  title: string;
-}
+import { INavigationItemProps } from "./types";
 
 export const Item = React.memo(
-  React.forwardRef<HTMLButtonElement, React.PropsWithChildren<IItemProps>>(
-    ItemComponent
-  )
+  React.forwardRef<
+    HTMLButtonElement,
+    React.PropsWithChildren<INavigationItemProps>
+  >(ItemComponent)
 );
 
 function ItemComponent(
@@ -27,7 +20,8 @@ function ItemComponent(
     isActive,
     title,
     children,
-  }: React.PropsWithChildren<IItemProps>,
+    sections,
+  }: React.PropsWithChildren<INavigationItemProps>,
   forwardRef: React.ForwardedRef<HTMLButtonElement>
 ) {
   // We store reference to the div that contains the menu items
@@ -56,8 +50,8 @@ function ItemComponent(
         onMouseLeave={() => {
           abortActivation();
         }}
-        // onClick we open the submenu immediately
-        onClick={() => setActive(id)}
+        // onClick we toggle the submenu immediately
+        onClick={() => (isActive ? setActive(undefined) : setActive(id))}
       >
         <strong>{title}</strong>
       </button>
@@ -91,7 +85,26 @@ function ItemComponent(
             }
           )}
         >
-          {children}
+          {sections.map((section, index) => {
+            return (
+              <div key={index}>
+                <h2>{section.title}</h2>
+                {section.columns.map((column, index) => {
+                  return (
+                    <div key={index} className="border">
+                      {column.map((item, index) => {
+                        return (
+                          <a key={index} href={item.title}>
+                            {item.title}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </Transition>
     </div>

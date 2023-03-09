@@ -7,7 +7,7 @@ import { clsx } from "clsx";
 import { HIDE_ANIMATION_DELAY_ON_MOUSE_OUTSIDE } from "./consts";
 import { INavigationProps } from "./types";
 
-export function Navigation({ menu }: INavigationProps) {
+export function Navigation({ menu, theme }: INavigationProps) {
   const {
     set,
     value: activeSubmenuId,
@@ -61,7 +61,10 @@ export function Navigation({ menu }: INavigationProps) {
 
   return (
     <div
-      className="mx-auto container mb-20 relative text-white"
+      className={clsx("mx-auto container relative text-white group", {
+        "navigation-black": theme === "BLACK",
+        "navigation-white": theme === "WHITE",
+      })}
       // We want to close the submenu when the user moves outside of navigation.
       // We use a delay to prevent the submenu from closing when the user moves back
       onMouseLeave={() => set(undefined, HIDE_ANIMATION_DELAY_ON_MOUSE_OUTSIDE)}
@@ -74,7 +77,13 @@ export function Navigation({ menu }: INavigationProps) {
         "--menu-window-height": `calc(${height}px - 8rem)`,
       }}
     >
-      <div className="bg-blue-500 flex justify-end p-2 sm:hidden">
+      <div
+        className="
+          flex justify-end p-2 sm:hidden
+          group-[.navigation-black]:bg-black group-[.navigation-black]:text-white
+          group-[.navigation-white]:bg-white group-[.navigation-white]:text-black
+        "
+      >
         <button onClick={() => setIsExpanded((v) => !v)}>
           <MenuIcon />
         </button>
@@ -84,25 +93,34 @@ export function Navigation({ menu }: INavigationProps) {
           {
             hidden: !isExpanded,
           },
-          "py-5 sm:h-24 bg-blue-500 w-full sm:flex"
+          "py-5 sm:h-24 w-full sm:flex",
+          "group-[.navigation-black]:bg-black group-[.navigation-black]:text-white",
+          "group-[.navigation-white]:bg-white group-[.navigation-white]:text-black"
         )}
       >
         {menu.map((item) => {
+          if (item.type === "LINK") {
+            return (
+              <a key={item.id} href={item.href}>
+                {item.title}
+              </a>
+            );
+          }
           return (
             <Item
+              key={item.id}
               id={item.id}
               isActive={activeSubmenuId === item.id}
               setActive={set}
               abortActivation={cancel}
               title={item.title}
+              sections={item.items}
               ref={(ref) => {
                 if (ref) {
                   itemRefs.current[item.id] = ref;
                 }
               }}
-            >
-              wait {item.id}
-            </Item>
+            />
           );
         })}
       </div>

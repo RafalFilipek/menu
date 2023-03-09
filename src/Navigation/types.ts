@@ -1,5 +1,8 @@
+import { UseDelayValueSetFunction } from "./useDelayValue";
+
 interface INavigationSectionItem {
   title: string;
+  href: string;
   badge?: { title: string };
 }
 
@@ -21,4 +24,14 @@ export interface INavigationProps {
   currentMarket: string;
   markets: { id: string; title: string }[];
   menu: INavigationItem[];
+  theme: "BLACK" | "WHITE";
+}
+
+export interface INavigationItemProps {
+  id: string;
+  setActive: UseDelayValueSetFunction;
+  abortActivation: () => void;
+  isActive: boolean;
+  title: string;
+  sections: INavigationSection[];
 }
