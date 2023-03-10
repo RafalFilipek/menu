@@ -74,6 +74,7 @@ export interface INavigationContainerProps {
   theme: ITheme;
   set: UseDelayValueSetFunction;
   activeSubmenuId: string | undefined;
+  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface INavigationMenuProps {

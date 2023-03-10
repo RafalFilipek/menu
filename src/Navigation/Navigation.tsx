@@ -65,18 +65,11 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
 
   return (
     <NavigationContainer
+      setIsExpanded={setIsExpanded}
       activeSubmenuId={activeSubmenuId}
       set={set}
       theme={theme}
     >
-      {/**
-       * This element is only visible on mobile. It contains a button that opens the submenu.
-       */}
-      <div className="flex justify-end p-2 sm:hidden">
-        <button onClick={() => setIsExpanded((v) => !v)}>
-          <MenuIcon />
-        </button>
-      </div>
       <Menu
         items={menu}
         isExpanded={isExpanded}
