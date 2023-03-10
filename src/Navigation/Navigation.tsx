@@ -1,28 +1,18 @@
 import * as React from "react";
-import { useWindowSize } from "./useWindowSize";
 import { useDelayValue } from "./useDelayValue";
-import { Item } from "./Item";
-import {
-  MenuIcon,
-  ShoppingCartIcon,
-  SearchIcon,
-  GlobeIcon,
-} from "lucide-react";
-import { clsx } from "clsx";
-import { HIDE_ANIMATION_DELAY_ON_MOUSE_OUTSIDE } from "./consts";
+import { MenuIcon } from "lucide-react";
+
 import { INavigationProps } from "./types";
+import { SideMenu } from "./SideMenu";
+import { Menu } from "./Menu";
+import { NavigationContainer } from "./NavigationContainer";
 
 export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
   const {
     set,
     value: activeSubmenuId,
     cancel,
-  } = useDelayValue<string | undefined>("SklepNode");
-  /**
-   * We need window height to calculate the max height of the submenu.
-   * This value will be passed to the submenu as a CSS variable.
-   */
-  const { height } = useWindowSize();
+  } = useDelayValue<string | undefined>(undefined);
 
   /**
    * On mobile, we want to manually control the expanded state of the submenu.
@@ -64,93 +54,38 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
     };
   }, [activeSubmenuId, set]);
 
+  const setMenuItemRef = React.useCallback(
+    (id: string, ref: HTMLButtonElement | null) => {
+      if (ref) {
+        itemRefs.current[id] = ref;
+      }
+    },
+    []
+  );
+
   return (
-    <div
-      className={clsx(
-        "mx-auto container relative text-white group flex flex-col sm:flex-row",
-        {
-          "navigation-black bg-black text-white": theme === "BLACK",
-          "navigation-white bg-white text-black": theme === "WHITE",
-        }
-      )}
-      // We want to close the submenu when the user moves outside of navigation.
-      // We use a delay to prevent the submenu from closing when the user moves back
-      onMouseLeave={() => set(undefined, HIDE_ANIMATION_DELAY_ON_MOUSE_OUTSIDE)}
-      // If user moves back to the navigation, we want to restore current submenu (if exists).
-      onMouseEnter={() => set(activeSubmenuId)}
-      // We pass the window height to the submenu as a CSS variable. This way we can
-      // minimize the number of re-renders and props drilling.
-      style={{
-        // @ts-expect-error --menu-window-height is a custom CSS variable
-        "--menu-window-height": `calc(${height}px - 8rem)`,
-      }}
+    <NavigationContainer
+      activeSubmenuId={activeSubmenuId}
+      set={set}
+      theme={theme}
     >
       {/**
        * This element is only visible on mobile. It contains a button that opens the submenu.
        */}
-      <div
-        className="
-          flex justify-end p-2 sm:hidden 
-
-        "
-      >
+      <div className="flex justify-end p-2 sm:hidden">
         <button onClick={() => setIsExpanded((v) => !v)}>
           <MenuIcon />
         </button>
       </div>
-      <div
-        className={clsx(
-          {
-            hidden: !isExpanded,
-          },
-          "py-5 sm:h-24 w-full sm:flex "
-        )}
-      >
-        {menu.map((item) => {
-          if (item.type === "LINK") {
-            return (
-              <a key={item.id} href={item.href}>
-                {item.title}
-              </a>
-            );
-          }
-          return (
-            <Item
-              key={item.id}
-              type={item.type}
-              id={item.id}
-              isActive={activeSubmenuId === item.id}
-              setActive={set}
-              abortActivation={cancel}
-              title={item.title}
-              sections={item.items}
-              ref={(ref) => {
-                if (ref) {
-                  itemRefs.current[item.id] = ref;
-                }
-              }}
-            />
-          );
-        })}
-      </div>
-      <div className="hidden sm:flex justify-end p-2 ">
-        {sideMenu.map((item, index) => {
-          if (item.type === "LINK") {
-            return (
-              <a key={index} href={item.href}>
-                <GlobeIcon />
-              </a>
-            );
-          }
-          if (item.type === "SEARCH") {
-            return <SearchIcon key={index} />;
-          }
-          if (item.type === "CART") {
-            return <ShoppingCartIcon key={index} />;
-          }
-          return null;
-        })}
-      </div>
-    </div>
+      <Menu
+        items={menu}
+        isExpanded={isExpanded}
+        activeSubmenuId={activeSubmenuId}
+        cancel={cancel}
+        set={set}
+        setRef={setMenuItemRef}
+      />
+      <SideMenu items={sideMenu} />
+    </NavigationContainer>
   );
 }

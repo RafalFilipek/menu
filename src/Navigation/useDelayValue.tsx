@@ -16,11 +16,12 @@ import * as React from "react";
 // outside.
 
 export type UseDelayValueSetFunction = (value: any, delay?: number) => void;
+export type UseDelayCancelValueFunction = () => void;
 
 export function useDelayValue<T>(value: T) {
   const [debouncedValue, setDebouncedValue] = React.useState(value);
 
-  const timeoutId = React.useRef<number | undefined>(undefined);
+  const timeoutId = React.useRef<NodeJS.Timeout | undefined>(undefined);
   const set = React.useCallback((value: any, delay?: number) => {
     if (timeoutId.current) {
       clearTimeout(timeoutId.current);

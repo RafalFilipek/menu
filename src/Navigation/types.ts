@@ -1,4 +1,7 @@
-import { UseDelayValueSetFunction } from "./useDelayValue";
+import {
+  UseDelayCancelValueFunction,
+  UseDelayValueSetFunction,
+} from "./useDelayValue";
 
 /**
  * Single item in a navigation section
@@ -57,10 +60,31 @@ export interface INavigationItemProps {
   type: "EXPANDER" | "MOBILE_EXCLUSIVE_EXPANDER";
 }
 
+type ITheme = "BLACK" | "WHITE";
+
 export interface INavigationProps {
   currentMarket: string;
   markets: { id: string; title: string }[];
   menu: INavigationItem[];
   sideMenu: INavigationSideItem[];
-  theme: "BLACK" | "WHITE";
+  theme: ITheme;
+}
+
+export interface INavigationContainerProps {
+  theme: ITheme;
+  set: UseDelayValueSetFunction;
+  activeSubmenuId: string | undefined;
+}
+
+export interface INavigationMenuProps {
+  isExpanded: boolean;
+  activeSubmenuId: string | undefined;
+  items: INavigationItem[];
+  set: UseDelayValueSetFunction;
+  cancel: UseDelayCancelValueFunction;
+  setRef: (id: string, ref: HTMLButtonElement | null) => void;
+}
+
+export interface INavigationSideMenuProps {
+  items: INavigationSideItem[];
 }
