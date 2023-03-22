@@ -7,6 +7,7 @@ import {
  * Single item in a navigation section
  */
 interface INavigationSectionItem {
+  id: string;
   title: string;
   href: string;
   badge?: { title: string };
@@ -17,6 +18,7 @@ interface INavigationSectionItem {
  * Navigation section
  */
 interface INavigationSection {
+  id: string;
   title?: string;
   columns: INavigationSectionItem[][];
 }
@@ -84,6 +86,14 @@ export interface INavigationMenuProps {
   set: UseDelayValueSetFunction;
   cancel: UseDelayCancelValueFunction;
   setRef: (id: string, ref: HTMLButtonElement | null) => void;
+}
+
+export interface INavigationMenuSectionProps {
+  id: string;
+  isAcctive: boolean;
+  columns: INavigationSectionItem[][];
+  title?: string;
+  setSection: (id: string | undefined) => void;
 }
 
 export interface INavigationSideMenuProps {

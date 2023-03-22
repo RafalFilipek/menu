@@ -25,17 +25,24 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
       title: "Oferta",
       items: [
         {
+          id: "a",
           title: "Abonament komórkowy",
           columns: [
             [
               {
+                id: "a",
                 title: "Plany komórkowe",
                 href: "/plany-komorkow",
                 badge: { title: "hello" },
               },
-              { title: "Nowy numer", href: "/nowy-numer", iconType: "lol" },
-              { title: "Przeduż umowę", href: "/przedluz-umowe" },
-              { title: "Przenieś numer", href: "/przenies-numer" },
+              {
+                id: "b",
+                title: "Nowy numer",
+                href: "/nowy-numer",
+                iconType: "lol",
+              },
+              { id: "c", title: "Przeduż umowę", href: "/przedluz-umowe" },
+              { id: "d", title: "Przenieś numer", href: "/przenies-numer" },
             ],
           ],
         },
@@ -47,106 +54,166 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
       title: "Sklep",
       items: [
         {
+          id: "a",
           title: "Telefony i urządzenia",
           columns: [
             [
               {
+                id: "a",
                 title: "Smartfony z abonamentem",
                 href: "/smartfony-z-abonamentem",
               },
               {
+                id: "b",
                 title: "Smartfony bez abonamentu",
                 href: "/smartfony-bez-abonamentu",
               },
-              { title: "Outlet", href: "/outlet" },
-              { title: "Laptopy i konsole ", href: "/laptopy-i-konsole" },
-              { title: "Modemy i routery", href: "/modemy-i-routery" },
+              {
+                id: "c",
+                title: "Outlet",
+                href: "/outlet",
+              },
+              {
+                id: "d",
+                title: "Laptopy i konsole ",
+                href: "/laptopy-i-konsole",
+              },
+              {
+                id: "e",
+                title: "Modemy i routery",
+                href: "/modemy-i-routery",
+              },
             ],
             [
               {
+                id: "a",
                 title: "Smartwatche i smartbandy ",
                 href: "/smartwatche-i-smartbandy",
               },
-              { title: "Urządzenia smart", href: "/urządzenia-smart" },
-              { title: "Telewizory i audio ", href: "/telewizory-i-audio" },
-              { title: "Pojazdy elektryczne", href: "/pojazdy-elektryczne" },
-              { title: "Porównywarka", href: "/porównywarka" },
+              { id: "b", title: "Urządzenia smart", href: "/urządzenia-smart" },
+              {
+                id: "c",
+                title: "Telewizory i audio ",
+                href: "/telewizory-i-audio",
+              },
+              {
+                id: "d",
+                title: "Pojazdy elektryczne",
+                href: "/pojazdy-elektryczne",
+              },
+              { id: "e", title: "Porównywarka", href: "/porównywarka" },
             ],
           ],
         },
         {
+          id: "b",
           title: "Akcesoria",
           columns: [
             [
-              { title: "Słuchawki", href: "/słuchawki" },
-              { title: "Głośniki Bluetooth", href: "/Głośniki Bluetooth" },
-              { title: "Etui na telefon", href: "/Etui na telefon" },
-              { title: "Szkła ochronne", href: "/Szkła ochronne" },
-              { title: "Wszystkie akcesoria", href: "/Wszystkie akcesoria" },
+              { id: "a", title: "Słuchawki", href: "/słuchawki" },
+              {
+                id: "b",
+                title: "Głośniki Bluetooth",
+                href: "/Głośniki Bluetooth",
+              },
+              { id: "c", title: "Etui na telefon", href: "/Etui na telefon" },
+              { id: "d", title: "Szkła ochronne", href: "/Szkła ochronne" },
+              {
+                id: "e",
+                title: "Wszystkie akcesoria",
+                href: "/Wszystkie akcesoria",
+              },
             ],
           ],
         },
         {
+          id: "c",
           title: "Strefa marek",
           columns: [
             [
-              { title: "Samsung", href: "/Samsung" },
-              { title: "Apple", href: "/Apple" },
-              { title: "Xiaomi", href: "/Xiaomi" },
-              { title: "Realme", href: "/Realme" },
-              { title: "Oppo", href: "/Oppo" },
+              { id: "a", title: "Samsung", href: "/Samsung" },
+              { id: "b", title: "Apple", href: "/Apple" },
+              { id: "c", title: "Xiaomi", href: "/Xiaomi" },
+              { id: "d", title: "Realme", href: "/Realme" },
+              { id: "e", title: "Oppo", href: "/Oppo" },
             ],
           ],
         },
         {
+          id: "d",
           title: "Telefony i urządzenia",
           columns: [
             [
               {
+                id: "a",
                 title: "Smartfony z abonamentem",
                 href: "/smartfony-z-abonamentem",
               },
               {
+                id: "b",
                 title: "Smartfony bez abonamentu",
                 href: "/smartfony-bez-abonamentu",
               },
-              { title: "Outlet", href: "/outlet" },
-              { title: "Laptopy i konsole ", href: "/laptopy-i-konsole" },
-              { title: "Modemy i routery", href: "/modemy-i-routery" },
+              { id: "c", title: "Outlet", href: "/outlet" },
+              {
+                id: "d",
+                title: "Laptopy i konsole ",
+                href: "/laptopy-i-konsole",
+              },
+              { id: "e", title: "Modemy i routery", href: "/modemy-i-routery" },
             ],
             [
               {
+                id: "a",
                 title: "Smartwatche i smartbandy ",
                 href: "/smartwatche-i-smartbandy",
               },
-              { title: "Urządzenia smart", href: "/urządzenia-smart" },
-              { title: "Telewizory i audio ", href: "/telewizory-i-audio" },
-              { title: "Pojazdy elektryczne", href: "/pojazdy-elektryczne" },
-              { title: "Porównywarka", href: "/porównywarka" },
+              { id: "b", title: "Urządzenia smart", href: "/urządzenia-smart" },
+              {
+                id: "c",
+                title: "Telewizory i audio ",
+                href: "/telewizory-i-audio",
+              },
+              {
+                id: "d",
+                title: "Pojazdy elektryczne",
+                href: "/pojazdy-elektryczne",
+              },
+              { id: "e", title: "Porównywarka", href: "/porównywarka" },
             ],
           ],
         },
         {
+          id: "e",
           title: "Akcesoria",
           columns: [
             [
-              { title: "Słuchawki", href: "/słuchawki" },
-              { title: "Głośniki Bluetooth", href: "/Głośniki Bluetooth" },
-              { title: "Etui na telefon", href: "/Etui na telefon" },
-              { title: "Szkła ochronne", href: "/Szkła ochronne" },
-              { title: "Wszystkie akcesoria", href: "/Wszystkie akcesoria" },
+              { id: "a", title: "Słuchawki", href: "/słuchawki" },
+              {
+                id: "b",
+                title: "Głośniki Bluetooth",
+                href: "/Głośniki Bluetooth",
+              },
+              { id: "c", title: "Etui na telefon", href: "/Etui na telefon" },
+              { id: "d", title: "Szkła ochronne", href: "/Szkła ochronne" },
+              {
+                id: "e",
+                title: "Wszystkie akcesoria",
+                href: "/Wszystkie akcesoria",
+              },
             ],
           ],
         },
         {
+          id: "f",
           title: "Strefa marek",
           columns: [
             [
-              { title: "Samsung", href: "/Samsung" },
-              { title: "Apple", href: "/Apple" },
-              { title: "Xiaomi", href: "/Xiaomi" },
-              { title: "Realme", href: "/Realme" },
-              { title: "Oppo", href: "/Oppo" },
+              { id: "a", title: "Samsung", href: "/Samsung" },
+              { id: "b", title: "Apple", href: "/Apple" },
+              { id: "c", title: "Xiaomi", href: "/Xiaomi" },
+              { id: "d", title: "Realme", href: "/Realme" },
+              { id: "e", title: "Oppo", href: "/Oppo" },
             ],
           ],
         },
@@ -159,21 +226,30 @@ const navigationProps: React.ComponentProps<typeof Navigation> = {
       title: "Mobile exclusive",
       items: [
         {
+          id: "a",
           title: "Abonament komórkowy",
           columns: [
             [
               {
+                id: "a",
                 title: "Plany komórkowe",
                 href: "/plany-komorkowe ",
                 iconType: "globe",
               },
-              { title: "Nowy numer", href: "/nowy-numer", iconType: "globe" },
               {
+                id: "b",
+                title: "Nowy numer",
+                href: "/nowy-numer",
+                iconType: "globe",
+              },
+              {
+                id: "c",
                 title: "Przeduż umowę",
                 href: "/przedluz-umowe",
                 iconType: "globe",
               },
               {
+                id: "d",
                 title: "Przenieś numer",
                 href: "/przenies-numer",
                 iconType: "globe",

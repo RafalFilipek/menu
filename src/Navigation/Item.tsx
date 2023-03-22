@@ -5,6 +5,7 @@ import { getTabbableCandidates } from "./getTabbableCandidates";
 import { SHOW_ANIMATION_DELAY } from "./consts";
 import { INavigationItemProps } from "./types";
 import { GlobeIcon } from "lucide-react";
+import { Section } from "./Section";
 
 export const Item = React.memo(
   React.forwardRef<
@@ -38,6 +39,10 @@ function ItemComponent(
       }
     }
   }, []);
+
+  const [activeSectionId, setActiveSectionId] = React.useState<
+    string | undefined
+  >();
 
   return (
     <div
@@ -84,49 +89,15 @@ function ItemComponent(
           )}
         >
           {sections.map((section, index) => {
-            const columnsCount = section.columns.length;
             return (
-              <div
+              <Section
+                id={section.id}
+                isActive={section.id === activeSectionId}
+                setSection={setActiveSectionId}
                 key={index}
-                className={clsx({
-                  "sm:w-1/4": columnsCount == 1,
-                  "sm:w-2/4": columnsCount == 2,
-                  "sm:w-3/4": columnsCount == 3,
-                  "sm:w-full": columnsCount == 4,
-                })}
-              >
-                <h2
-                  className={clsx("font-bold border-b border-gray-400 mt-6", {
-                    "sm:w-full": columnsCount == 1,
-                    "sm:w-1/2": columnsCount == 2,
-                    "sm:w-1/3": columnsCount == 3,
-                    "sm:w-1/4": columnsCount == 4,
-                  })}
-                >
-                  {section.title}
-                </h2>
-                <div className="flex flex-col sm:flex-row sm:gap-5 pb-10">
-                  {section.columns.map((column, index) => {
-                    return (
-                      <ul key={index} className="w-full">
-                        {column.map((item, index) => {
-                          return (
-                            <li key={index} className="flex gap-2">
-                              {item.iconType && <GlobeIcon />}
-                              <a href={item.title}>{item.title}</a>
-                              {item.badge && (
-                                <span className="bg-yellow-200 rounded-lg">
-                                  {item.badge.title}
-                                </span>
-                              )}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    );
-                  })}
-                </div>
-              </div>
+                title={section.title}
+                columns={section.columns}
+              />
             );
           })}
         </div>

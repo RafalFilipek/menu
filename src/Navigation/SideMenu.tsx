@@ -55,9 +55,8 @@ function SearchItem(props: INavigationSideBarSearchItemProps) {
           {
             hidden: !isSearchVisible,
           },
-          "min-h-full absolute bg-red-500 overflow-hidden",
+          "min-h-full absolute bg-red-500 overflow-hidden top-0",
           "w-[var(--navigation-menu-container-width)]",
-          "top-0",
           "left-[var(--navigation-menu-container-left)]"
         )}
       >
