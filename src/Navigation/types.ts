@@ -90,7 +90,7 @@ export interface INavigationMenuProps {
 
 export interface INavigationMenuSectionProps {
   id: string;
-  isAcctive: boolean;
+  isActive: boolean;
   columns: INavigationSectionItem[][];
   title?: string;
   setSection: (id: string | undefined) => void;
