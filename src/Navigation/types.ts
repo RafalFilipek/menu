@@ -88,4 +88,5 @@ export interface INavigationMenuProps {
 
 export interface INavigationSideMenuProps {
   items: INavigationSideItem[];
+  menuRef: React.RefObject<HTMLDivElement>;
 }

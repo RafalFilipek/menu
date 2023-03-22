@@ -20,7 +20,7 @@ export function NavigationContainer({
   return (
     <div
       className={clsx(
-        "mx-auto container relative text-white group flex flex-col sm:flex-row",
+        "mx-auto container relative text-white group flex flex-col sm:flex-row border-2 border-red-500",
         {
           "navigation-black bg-black text-white": theme === "BLACK",
           "navigation-white bg-white text-black": theme === "WHITE",
@@ -41,7 +41,7 @@ export function NavigationContainer({
       {/**
        * This element is only visible on mobile. It contains a button that opens the submenu.
        */}
-      <div className="flex justify-end p-2 sm:hidden">
+      <div className="flex justify-end p-2 sm:hidden border-2 border-green-500">
         <button onClick={() => setIsExpanded((v) => !v)}>
           <MenuIcon />
         </button>

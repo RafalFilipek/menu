@@ -20,6 +20,8 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
    */
   const [isExpanded, setIsExpanded] = React.useState(false);
 
+  const menuContainerRef = React.useRef<HTMLDivElement>(null);
+
   /**
    * In order to manage focus, we need to store a ref to each menu item.
    * This refs will point to the button that opens the submenu.
@@ -70,15 +72,18 @@ export function Navigation({ menu, sideMenu, theme }: INavigationProps) {
       set={set}
       theme={theme}
     >
+      <div className="w-16 bg-red-400"></div>
       <Menu
+        ref={menuContainerRef}
         items={menu}
         isExpanded={isExpanded}
         activeSubmenuId={activeSubmenuId}
         cancel={cancel}
         set={set}
         setRef={setMenuItemRef}
-      />
-      <SideMenu items={sideMenu} />
+      >
+        <SideMenu items={sideMenu} menuRef={menuContainerRef} />
+      </Menu>
     </NavigationContainer>
   );
 }
