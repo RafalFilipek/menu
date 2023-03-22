@@ -55,7 +55,7 @@ function SearchItem(props: INavigationSideBarSearchItemProps) {
           {
             hidden: !isSearchVisible,
           },
-          "h-full absolute bg-red-500",
+          "min-h-full absolute bg-red-500 overflow-hidden",
           "w-[var(--navigation-menu-container-width)]",
           "top-0",
           "left-[var(--navigation-menu-container-left)]"
@@ -64,6 +64,12 @@ function SearchItem(props: INavigationSideBarSearchItemProps) {
         {isSearchVisible && (
           <div>
             search <button onClick={toggle}>x</button>
+            <div className="h-32 w-full p-2 bg-blue-500">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi,
+              iste inventore repudiandae quam ipsum doloremque sit? Odio
+              maiores, est facere voluptatem repellat maxime, natus quasi illo
+              rem at possimus doloribus.
+            </div>
           </div>
         )}
       </div>
